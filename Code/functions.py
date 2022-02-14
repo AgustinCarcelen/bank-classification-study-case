@@ -189,9 +189,8 @@ def show_values(data):
         #used to underline the text
         print("\033[4m" + data[column].name + "\033[0m")
         print(data[column].value_counts())
-        #fig, (ax) = plt.subplots(1,1, figsize=(5, 5))
-        #sns.displot(data[column], ax=ax)
-        #plt.show()
+        fig, (ax) = plt.subplots(1,1, figsize=(5, 5))
+        sns.histplot(data[column], ax=ax)
         print("")
         print("")
 
