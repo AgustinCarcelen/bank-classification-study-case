@@ -1,0 +1,375 @@
+
+	SCENARIO
+
+You are working as a risk analyst with a bank. Apart from the other banking and loan services, the bank also provides 
+credit card services that are a very important source of revenue for the bank. The bank wants to understand the demographics 
+and other characteristics of its customers that accept a credit card offer and that do not accept a credit card.
+
+Usually, the observational data for these kinds of problems is somewhat limited in that often the company sees only those 
+who respond to an offer. To get around this, the bank designs a focused marketing study, with 18,000 current bank customers. 
+This focused approach allows the bank to know who does and does not respond to the offer, and to use existing demographic data 
+that is already available on each customer.
+
+
+	OBJECTIVE
+
+Build a model that will provide insight into why some bank customers accept credit card offers. There are also 
+other potential areas of opportunities that the bank wants to understand from the data.
+
+Your senior management has also posted these other questions that will help them better understand their customers.
+
+
+
+-------------------------------------------------------------------------------------------
+
+COSTUMER NUMBER (int):
+
+	Hi ha 18.000 clients. 
+
+-----------------------------------------------------------------------------------------------------------------------
+
+OFFER ACCEPTED (object, DEPENDENT VARIABLE):
+
+	Hi ha 1.023 trues (5,68%) i 16.977 false (94,31%). Aquí dependrà si el client és solvent o no, si té feina indefinida,
+	si té credits o prèstecs que es paguen a temps, el nivell d'ingressos, si té propietats al seu nom.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+REWARD (object):
+
+	Hi ha 3 tipus de recompensa ('air miles', 'cash back' o 'points'). Els tres tenen quasi bé els mateixos clients (entre
+	5.900 i 6.100). 
+
+	El que n'hi ha més és 'air miles'  --> viatgen en avió per motius per treball i llavors ofereixen descomptes per bitllets 
+	d'avió per feina o lleure més barats?
+
+	En teoria NO té res a veure amb 'offer accepted' perquè TOTS els clients tenen algun dels tres tipus de reward. Tampoc
+	podriem suposar a simple vista que els són TRUE tinguin solament un tipus de reward --> fer query SQL entre columnes
+	que siguin TRUE i el tipus de reward.
+
+mysql> select reward, count(reward) from credit_card_data where offer_accepted = 'Yes' group by reward;
++-----------+---------------+
+| reward    | count(reward) |
++-----------+---------------+
+| Air Miles |           465 |
+| Cash Back |           206 |
+| Points    |           352 |
++-----------+---------------+
+3 rows in set (0.01 sec)
+
+-------------------------------------------------------------------------------------------------------------------------
+
+MAILER TYPE (object):
+
+	Pràcticament hi ha la meitat de postals i de cartes (un pel per sobre les postals).
+	
+	La diferència entre una postal i una carta és que la informació que conté la postal es troba allà, mentre que en la carta,
+	la informació es troba DINS d'un sobre. Per tant, en el món del marketing, la postal té una incidència més DIRECTA en
+	el client que no pas la carta. Normalment, els clients quan reben cartes de propaganda, tendeixen a tirar-les sense
+	obrir-les per veure el contingut.
+
+	Es possible que els que són trues tinguin una proporció més alta de postals que no pas de cartes; per això cal fer una
+	query per veure els resultats (offer accepted TRUE and type of mail).
+
+mysql> select mailer_type, count(mailer_type) from credit_card_data where offer_accepted = 'Yes' group by mailer_type;
++-------------+--------------------+
+| mailer_type | count(mailer_type) |
++-------------+--------------------+
+| Letter      |                300 |
+| Postcard    |                723 |
++-------------+--------------------+
+2 rows in set (0.01 sec)
+
+-------------------------------------------------------------------------------------------------------------------------
+
+INCOME LEVEL (object):
+
+	Hi ha 3 tipus (high - 50%, medium - 25% i low - 25%). Es possible que els true siguin HIGH? Com que n'hi ha molt pocs
+	i de 'high' també n'hi ha bastant menys que de 'medium', es possible que hi hagi relació:
+
+mysql> select income_level, count(income_level) from credit_card_data where offer_accepted = 'Yes' group by income_level;
++--------------+---------------------+
+| income_level | count(income_level) |
++--------------+---------------------+
+| Medium       |                 470 |
+| High         |                 165 |
+| Low          |                 388 |
++--------------+---------------------+
+3 rows in set (0.01 sec)
+
+	Segueix la tendència que el total, inclús els 'high' són la classe MINORITÀRIA.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+BANK ACCOUNTS OPEN (int):
+
+	Els que es troben dins de 'true', la gran majoria NOMÉS tenen 1 compte bancari.
+
+mysql> select bank_accounts_open, count(bank_accounts_open) from credit_card_data where offer_accepted = 'Yes' group by bank_accounts_open;
++--------------------+---------------------------+
+| bank_accounts_open | count(bank_accounts_open) |
++--------------------+---------------------------+
+|                  1 |                       776 |
+|                  2 |                       234 |
+|                  3 |                        13 |
++--------------------+---------------------------+
+3 rows in set (0.01 sec)
+-------------------------------------------------------------------------------------------------------------------------
+
+OVERDRAFT PROTECTION (object):
+
+mysql> select overdraft_protection, count(overdraft_protection) from credit_card_data where offer_accepted = 'Yes' group by overdraft_protection;
++----------------------+-----------------------------+
+| overdraft_protection | count(overdraft_protection) |
++----------------------+-----------------------------+
+| No                   |                         875 |
+| Yes                  |                         148 |
++----------------------+-----------------------------+
+2 rows in set (0.01 sec)
+
+mysql> select overdraft_protection, count(overdraft_protection) from credit_card_data where offer_accepted = 'Yes' and income_level = 'High' group by overdraft_protection;
++----------------------+-----------------------------+
+| overdraft_protection | count(overdraft_protection) |
++----------------------+-----------------------------+
+| Yes                  |                          30 |
+| No                   |                         135 |
++----------------------+-----------------------------+
+2 rows in set (0.01 sec)
+
+mysql> select overdraft_protection, count(overdraft_protection) from credit_card_data where offer_accepted = 'Yes' and income_level = 'Medium' group by overdraft_protection;
++----------------------+-----------------------------+
+| overdraft_protection | count(overdraft_protection) |
++----------------------+-----------------------------+
+| No                   |                         400 |
+| Yes                  |                          70 |
++----------------------+-----------------------------+
+2 rows in set (0.02 sec)
+
+	S'observa que hi ha molt pocs clients 'high' que tenen overdraft protection, per tant, la majoria són 'medium' (70).
+
+-------------------------------------------------------------------------------------------------------------------------
+
+CREDIT RATING (object):
+
+mysql> select credit_rating, count(credit_rating) from credit_card_data where offer_accepted = 'Yes' and income_level = 'High' group by credit_rating;
++---------------+----------------------+
+| credit_rating | count(credit_rating) |
++---------------+----------------------+
+| Low           |                  104 |
+| High          |                   18 |
+| Medium        |                   43 |
++---------------+----------------------+
+3 rows in set (0.01 sec)
+
+mysql> select credit_rating, count(credit_rating) from credit_card_data where offer_accepted = 'Yes' group by credit_rating;
++---------------+----------------------+
+| credit_rating | count(credit_rating) |
++---------------+----------------------+
+| Low           |                  633 |
+| High          |                  119 |
+| Medium        |                  271 |
++---------------+----------------------+
+3 rows in set (0.01 sec)
+
+	Són una MINORIA els que tenen un high credit rating entre els que tenen un high income (18). En general, la cosa està
+	molt proporcional (entre 5.900 i 6.100).
+
+-------------------------------------------------------------------------------------------------------------------------
+
+CREDIT CARDS HELD (int):
+
+mysql> select credit_cards_held, count(credit_cards_held) from credit_card_data where offer_accepted = 'Yes' group by credit_cards_held;
++-------------------+--------------------------+
+| credit_cards_held | count(credit_cards_held) |
++-------------------+--------------------------+
+|                 1 |                      362 |
+|                 2 |                      434 |
+|                 3 |                      198 |
+|                 4 |                       29 |
++-------------------+--------------------------+
+4 rows in set (0.01 sec)
+
+	És interessant que la majoria tenen 2 credit cards NOMÉS tenint UN compte bancari obert. Mirar de relacionar amb el nombre personas en familia
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+HOMES OWNED (int):
+
+mysql> select homes_owned, count(homes_owned) from credit_card_data where offer_accepted = 'Yes' group by homes_owned;
++-------------+--------------------+
+| homes_owned | count(homes_owned) |
++-------------+--------------------+
+|           1 |                825 |
+|           2 |                189 |
+|           3 |                  9 |
++-------------+--------------------+
+3 rows in set (0.01 sec)
+
+mysql> select homes_owned, count(homes_owned) from credit_card_data where offer_accepted = 'Yes' and income_level = 'High' group by homes_owned;
++-------------+--------------------+
+| homes_owned | count(homes_owned) |
++-------------+--------------------+
+|           1 |                125 |
+|           2 |                 38 |
+|           3 |                  2 |
++-------------+--------------------+
+3 rows in set (0.01 sec)
+
+	No hi ha rellevància entre els que tenen un 'high' income amb el nombre de cases que tenen.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+HOUSEHOLD SIZE (int): QUANTES PERSONES VIUEN DINS LA CASA
+
+mysql> select household_size, count(household_size) from credit_card_data where offer_accepted = 'Yes' group by household_size order by count(household_size) desc;
++----------------+-----------------------+
+| household_size | count(household_size) |
++----------------+-----------------------+
+|              3 |                   345 |
+|              4 |                   311 |
+|              2 |                   151 |
+|              5 |                   145 |
+|              1 |                    43 |
+|              6 |                    27 |
+|              9 |                     1 |
++----------------+-----------------------+
+7 rows in set (0.01 sec)
+
+	La majoria són de 3 o 4. L'histogram té forma de DISTRIBUCIÓ NORMAL.
+
+mysql> select household_size, count(household_size) from credit_card_data where offer_accepted = 'Yes' and income_level = 'High' group by household_size order by count(household_size) desc;
++----------------+-----------------------+
+| household_size | count(household_size) |
++----------------+-----------------------+
+|              3 |                    51 |
+|              4 |                    46 |
+|              5 |                    33 |
+|              2 |                    23 |
+|              1 |                     7 |
+|              6 |                     4 |
+|              9 |                     1 |
++----------------+-----------------------+
+7 rows in set (0.01 sec)
+
+	Segueix la mateixa tendència amb els 'high' income.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+OWN YOUR HOME (object):
+
+mysql> select own_your_home, count(own_your_home) from credit_card_data where offer_accepted = 'Yes' group by own_your_home order by count(own_your_home) desc;
++---------------+----------------------+
+| own_your_home | count(own_your_home) |
++---------------+----------------------+
+| Yes           |                  663 |
+| No            |                  360 |
++---------------+----------------------+
+2 rows in set (0.01 sec)
+
+mysql> select own_your_home, count(own_your_home) from credit_card_data where offer_accepted = 'Yes' and income_level = 'High' group by own_your_home order by count(own_your_home) desc;
++---------------+----------------------+
+| own_your_home | count(own_your_home) |
++---------------+----------------------+
+| Yes           |                  110 |
+| No            |                   55 |
++---------------+----------------------+
+2 rows in set (0.01 sec)
+
+mysql> select own_your_home, count(own_your_home) from credit_card_data where offer_accepted = 'Yes' and income_level = 'Low' group by own_your_home order by count(own_your_home) desc;
++---------------+----------------------+
+| own_your_home | count(own_your_home) |
++---------------+----------------------+
+| Yes           |                  254 |
+| No            |                  134 |
++---------------+----------------------+
+2 rows in set (0.01 sec)
+
+	Molt pocs NO tenen casa pròpia entre els 'high' income, mentre que en els 'low' la proporció augmenta. Pel que fa al
+	general, gairebé el doble de clients tenen casa pròpia.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+AVERAGE BALANCE (float):
+
+mysql> select income_level, avg(average_balance) from credit_card_data where offer_accepted = 'Yes' group by income_level order by avg(average_balance) desc;
++--------------+----------------------+
+| income_level | avg(average_balance) |
++--------------+----------------------+
+| Medium       |           939.055851 |
+| Low          |           929.916881 |
+| High         |           923.943939 |
++--------------+----------------------+
+3 rows in set (0.01 sec)
+
+	Destaca que NO hi ha gairebé diferència entre les mitjanes segons el nivell d'income. És més, destaca que 'high' sigui
+	el que MENOR average té.
+
+	Tal com es veu el gràfic en el profiling, apareixen DOS CLUSTERS.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+Q1 BALANCE (float):
+
+mysql> select income_level, avg(Q1_balance) from credit_card_data where offer_accepted = 'Yes' group by income_level order by avg(Q1_balance) desc;
++--------------+-----------------+
+| income_level | avg(Q1_balance) |
++--------------+-----------------+
+| High         |      909.084848 |
+| Low          |      864.283505 |
+| Medium       |      854.408511 |
++--------------+-----------------+
+3 rows in set (0.01 sec)
+
+	En aquest, els dos clusters en el profiling apareixen més uniformes pel que fa als pics (no s'acaben de dividir del tot).
+
+-------------------------------------------------------------------------------------------------------------------------
+
+Q2 BALANCE (float):
+
+mysql> select income_level, avg(Q2_balance) from credit_card_data where offer_accepted = 'Yes' group by income_level order by avg(Q2_balance) desc;
++--------------+-----------------+
+| income_level | avg(Q2_balance) |
++--------------+-----------------+
+| Low          |     1009.224227 |
+| Medium       |      997.129787 |
+| High         |      967.024242 |
++--------------+-----------------+
+3 rows in set (0.01 sec)
+
+	Apareix com una distribució normal.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+Q3 BALANCE (float):
+
+mysql> select income_level, avg(Q3_balance) from credit_card_data where offer_accepted = 'Yes' group by income_level order by avg(Q3_balance) desc;
++--------------+-----------------+
+| income_level | avg(Q3_balance) |
++--------------+-----------------+
+| Low          |     1063.208763 |
+| High         |     1057.454545 |
+| Medium       |     1055.753191 |
++--------------+-----------------+
+3 rows in set (0.01 sec)
+
+	Té forma de distribució normal, però hi ha un pic més accentuat.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+Q4 BALANCE (float):
+
+mysql> select income_level, avg(Q4_balance) from credit_card_data where offer_accepted = 'Yes' group by income_level order by avg(Q4_balance) desc;
++--------------+-----------------+
+| income_level | avg(Q4_balance) |
++--------------+-----------------+
+| Medium       |      848.931915 |
+| Low          |      782.951031 |
+| High         |      762.212121 |
++--------------+-----------------+
+3 rows in set (0.01 sec)
+
+	És aquí on marca distàncies els 'medium' de la resta; d'aquesta manera, és el majoritari en l'average balance, ja que en
+	els q1, q2 i q3, les distàncies entre ells són menors.
+
+	En el profiling, té forma d'skwed positiu, ja que per la part esquerra es troba a 0.
