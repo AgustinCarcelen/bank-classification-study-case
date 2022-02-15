@@ -47,15 +47,30 @@ REWARD (object):
 	podriem suposar a simple vista que els són TRUE tinguin solament un tipus de reward --> fer query SQL entre columnes
 	que siguin TRUE i el tipus de reward.
 
-mysql> select reward, count(reward) from credit_card_data where offer_accepted = 'Yes' group by reward;
-+-----------+---------------+
-| reward    | count(reward) |
-+-----------+---------------+
-| Air Miles |           465 |
-| Cash Back |           206 |
-| Points    |           352 |
-+-----------+---------------+
-3 rows in set (0.01 sec)
+		mysql> select reward, count(reward) from credit_card_data where offer_accepted = 'Yes' group by reward order by count(reward) desc;
+		+-----------+---------------+
+		| reward    | count(reward) |
+		+-----------+---------------+
+		| Air Miles |           463 |
+		| Points    |           352 |
+		| Cash Back |           206 |
+		+-----------+---------------+
+		3 rows in set (0.02 sec)
+		
+		mysql> select reward, count(reward) from credit_card_data where offer_accepted = 'No' group by reward order by count(reward) desc;
+		+-----------+---------------+
+		| reward    | count(reward) |
+		+-----------+---------------+
+		| Cash Back |          5789 |
+		| Air Miles |          5584 |
+		| Points    |          5582 |
+		+-----------+---------------+
+		3 rows in set (0.03 sec)
+		
+	D'altra banda, hi ha més demanda de 'cash back' entre els que NO accepten que els que si accepten. Per tant,
+	es podria assumir que una petita majoria dels clients (està igualada entre els tres) que NO accepten la credit card,
+	prioritzen més els diners (incidència DIRECTA en el client) que no pas en un altre tipus de premi (incidència
+	INDIRECTA).
 
 -------------------------------------------------------------------------------------------------------------------------
 
@@ -71,14 +86,14 @@ MAILER TYPE (object):
 	Es possible que els que són trues tinguin una proporció més alta de postals que no pas de cartes; per això cal fer una
 	query per veure els resultats (offer accepted TRUE and type of mail).
 
-mysql> select mailer_type, count(mailer_type) from credit_card_data where offer_accepted = 'Yes' group by mailer_type;
-+-------------+--------------------+
-| mailer_type | count(mailer_type) |
-+-------------+--------------------+
-| Letter      |                300 |
-| Postcard    |                723 |
-+-------------+--------------------+
-2 rows in set (0.01 sec)
+		mysql> select mailer_type, count(mailer_type) from credit_card_data where offer_accepted = 'Yes' group by mailer_type;
+		+-------------+--------------------+
+		| mailer_type | count(mailer_type) |
+		+-------------+--------------------+
+		| Letter      |                300 |
+		| Postcard    |                723 |
+		+-------------+--------------------+
+		2 rows in set (0.01 sec)
 
 -------------------------------------------------------------------------------------------------------------------------
 
@@ -87,15 +102,15 @@ INCOME LEVEL (object):
 	Hi ha 3 tipus (high - 50%, medium - 25% i low - 25%). Es possible que els true siguin HIGH? Com que n'hi ha molt pocs
 	i de 'high' també n'hi ha bastant menys que de 'medium', es possible que hi hagi relació:
 
-mysql> select income_level, count(income_level) from credit_card_data where offer_accepted = 'Yes' group by income_level;
-+--------------+---------------------+
-| income_level | count(income_level) |
-+--------------+---------------------+
-| Medium       |                 470 |
-| High         |                 165 |
-| Low          |                 388 |
-+--------------+---------------------+
-3 rows in set (0.01 sec)
+		mysql> select income_level, count(income_level) from credit_card_data where offer_accepted = 'Yes' group by income_level;
+		+--------------+---------------------+
+		| income_level | count(income_level) |
+		+--------------+---------------------+
+		| Medium       |                 470 |
+		| High         |                 165 |
+		| Low          |                 388 |
+		+--------------+---------------------+
+		3 rows in set (0.01 sec)
 
 	Segueix la tendència que el total, inclús els 'high' són la classe MINORITÀRIA.
 
@@ -105,91 +120,178 @@ BANK ACCOUNTS OPEN (int):
 
 	Els que es troben dins de 'true', la gran majoria NOMÉS tenen 1 compte bancari.
 
-mysql> select bank_accounts_open, count(bank_accounts_open) from credit_card_data where offer_accepted = 'Yes' group by bank_accounts_open;
-+--------------------+---------------------------+
-| bank_accounts_open | count(bank_accounts_open) |
-+--------------------+---------------------------+
-|                  1 |                       776 |
-|                  2 |                       234 |
-|                  3 |                        13 |
-+--------------------+---------------------------+
-3 rows in set (0.01 sec)
+		mysql> select bank_accounts_open, count(bank_accounts_open) from credit_card_data where offer_accepted = 'Yes' group by bank_accounts_open;
+		+--------------------+---------------------------+
+		| bank_accounts_open | count(bank_accounts_open) |
+		+--------------------+---------------------------+
+		|                  1 |                       776 |
+		|                  2 |                       234 |
+		|                  3 |                        13 |
+		+--------------------+---------------------------+
+		3 rows in set (0.01 sec)
 -------------------------------------------------------------------------------------------------------------------------
 
 OVERDRAFT PROTECTION (object):
 
-mysql> select overdraft_protection, count(overdraft_protection) from credit_card_data where offer_accepted = 'Yes' group by overdraft_protection;
-+----------------------+-----------------------------+
-| overdraft_protection | count(overdraft_protection) |
-+----------------------+-----------------------------+
-| No                   |                         875 |
-| Yes                  |                         148 |
-+----------------------+-----------------------------+
-2 rows in set (0.01 sec)
+		mysql> select overdraft_protection, count(overdraft_protection) from credit_card_data where offer_accepted = 'Yes' group by overdraft_protection;
+		+----------------------+-----------------------------+
+		| overdraft_protection | count(overdraft_protection) |
+		+----------------------+-----------------------------+
+		| No                   |                         875 |
+		| Yes                  |                         148 |
+		+----------------------+-----------------------------+
+		2 rows in set (0.01 sec)
 
-mysql> select overdraft_protection, count(overdraft_protection) from credit_card_data where offer_accepted = 'Yes' and income_level = 'High' group by overdraft_protection;
-+----------------------+-----------------------------+
-| overdraft_protection | count(overdraft_protection) |
-+----------------------+-----------------------------+
-| Yes                  |                          30 |
-| No                   |                         135 |
-+----------------------+-----------------------------+
-2 rows in set (0.01 sec)
+		mysql> select overdraft_protection, count(overdraft_protection) from credit_card_data where offer_accepted = 'Yes' and income_level = 'High' group by overdraft_protection;
+		+----------------------+-----------------------------+
+		| overdraft_protection | count(overdraft_protection) |
+		+----------------------+-----------------------------+
+		| Yes                  |                          30 |
+		| No                   |                         135 |
+		+----------------------+-----------------------------+
+		2 rows in set (0.01 sec)
 
-mysql> select overdraft_protection, count(overdraft_protection) from credit_card_data where offer_accepted = 'Yes' and income_level = 'Medium' group by overdraft_protection;
-+----------------------+-----------------------------+
-| overdraft_protection | count(overdraft_protection) |
-+----------------------+-----------------------------+
-| No                   |                         400 |
-| Yes                  |                          70 |
-+----------------------+-----------------------------+
-2 rows in set (0.02 sec)
+		mysql> select overdraft_protection, count(overdraft_protection) from credit_card_data where offer_accepted = 'Yes' and income_level = 'Medium' group by overdraft_protection;
+		+----------------------+-----------------------------+
+		| overdraft_protection | count(overdraft_protection) |
+		+----------------------+-----------------------------+
+		| No                   |                         400 |
+		| Yes                  |                          70 |
+		+----------------------+-----------------------------+
+		2 rows in set (0.02 sec)
 
-	S'observa que hi ha molt pocs clients 'high' que tenen overdraft protection, per tant, la majoria són 'medium' (70).
+		mysql> select overdraft_protection, count(overdraft_protection) from credit_card_data where offer_accepted = 'Yes' and income_level = 'Low' group by overdraft_protection;
+		+----------------------+-----------------------------+
+		| overdraft_protection | count(overdraft_protection) |
+		+----------------------+-----------------------------+
+		| No                   |                         339 |
+		| Yes                  |                          48 |
+		+----------------------+-----------------------------+
+		2 rows in set (0.06 sec)
+
+	S'observa que hi ha molt POCS clients 'high' que tenen overdraft protection, per tant, la majoria són 'medium' (70).
+	Això vol dir que, al tenir més capacitat adquisitiva, la tendència a quedar-se sense diners és molt menor que en
+	els nivells 'Medium' i 'Low'. Ara bé, la proporció entre 'si' i 'no' és més petita a 'high' que a 'medium'.
 
 -------------------------------------------------------------------------------------------------------------------------
 
 CREDIT RATING (object):
 
-mysql> select credit_rating, count(credit_rating) from credit_card_data where offer_accepted = 'Yes' and income_level = 'High' group by credit_rating;
-+---------------+----------------------+
-| credit_rating | count(credit_rating) |
-+---------------+----------------------+
-| Low           |                  104 |
-| High          |                   18 |
-| Medium        |                   43 |
-+---------------+----------------------+
-3 rows in set (0.01 sec)
+		mysql> select credit_rating, count(credit_rating) from credit_card_data where offer_accepted = 'Yes' and income_level = 'High' group by credit_rating;
+		+---------------+----------------------+
+		| credit_rating | count(credit_rating) |
+		+---------------+----------------------+
+		| Low           |                  104 |
+		| High          |                   18 |
+		| Medium        |                   43 |
+		+---------------+----------------------+
+		3 rows in set (0.01 sec)
 
-mysql> select credit_rating, count(credit_rating) from credit_card_data where offer_accepted = 'Yes' group by credit_rating;
-+---------------+----------------------+
-| credit_rating | count(credit_rating) |
-+---------------+----------------------+
-| Low           |                  633 |
-| High          |                  119 |
-| Medium        |                  271 |
-+---------------+----------------------+
-3 rows in set (0.01 sec)
+		mysql> select credit_rating, count(credit_rating) from credit_card_data where offer_accepted = 'Yes' group by credit_rating;
+		+---------------+----------------------+
+		| credit_rating | count(credit_rating) |
+		+---------------+----------------------+
+		| Low           |                  633 |
+		| High          |                  119 |
+		| Medium        |                  271 |
+		+---------------+----------------------+
+		3 rows in set (0.01 sec)
 
 	Són una MINORIA els que tenen un high credit rating entre els que tenen un high income (18). En general, la cosa està
-	molt proporcional (entre 5.900 i 6.100).
+	molt proporcional (entre 5.900 i 6.100). Que una majoria considerable dels clients tinguin un 'low' level, vol dir
+	que hi ha POCA confiança del bank amb aquests clients.
+	
+	
+	
+	Relació entre 'credit_rating' i 'overdraft_protection' i 'average_balance':
+	
+		mysql> select count(customer_number), credit_rating, round(avg(average_balance), 2) as average from credit_card_data where offer_accepted = 'Yes' and overdraft_protection = 'Yes' group by credit_rating;
+		+------------------------+---------------+---------+
+		| count(customer_number) | credit_rating | average |
+		+------------------------+---------------+---------+
+		|                     87 | Low           |  924.57 |
+		|                     25 | High          |  897.95 |
+		|                     36 | Medium        |  894.81 |
+		+------------------------+---------------+---------+
+		3 rows in set (0.02 sec)
+
+		mysql> select count(customer_number), credit_rating, round(avg(average_balance), 2) as average from credit_card_data where offer_accepted = 'No' and overdraft_protection = 'Yes' group by credit_rating order by average desc;
+		+------------------------+---------------+---------+
+		| count(customer_number) | credit_rating | average |
+		+------------------------+---------------+---------+
+		|                    877 | Medium        |  954.81 |
+		|                    792 | Low           |  954.23 |
+		|                    859 | High          |  923.04 |
+		+------------------------+---------------+---------+
+		3 rows in set (0.02 sec)
+		
+		mysql> select count(customer_number), credit_rating, round(avg(average_balance), 2) as average from credit_card_data where offer_accepted = 'Yes' and overdraft_protection = 'No' group by credit_rating order by average desc;
+		+------------------------+---------------+---------+
+		| count(customer_number) | credit_rating | average |
+		+------------------------+---------------+---------+
+		|                    546 | Low           |  956.67 |
+		|                    233 | Medium        |  914.92 |
+		|                     94 | High          |  893.61 |
+		+------------------------+---------------+---------+
+		3 rows in set (0.03 sec)
+		
+		mysql> select count(customer_number), credit_rating, round(avg(average_balance), 2) as average from credit_card_data where offer_accepted = 'No' and overdraft_protection = 'No' group by credit_rating order by average desc;
+		+------------------------+---------------+---------+
+		| count(customer_number) | credit_rating | average |
+		+------------------------+---------------+---------+
+		|                   5086 | High          |  949.16 |
+		|                   4523 | Low           |  936.24 |
+		|                   4818 | Medium        |  934.83 |
+		+------------------------+---------------+---------+
+		3 rows in set (0.06 sec)
+		
+	Ara bé, la mitjana de la balança dels clients 'low' és més alta que els 'high', tant si tenen overdraft com si no;
+	No obstant, els 'high' tenen la mitjana que els 'low' i 'medium' quan NO accepten la credit card NI tenen overdraft.
 
 -------------------------------------------------------------------------------------------------------------------------
 
 CREDIT CARDS HELD (int):
 
-mysql> select credit_cards_held, count(credit_cards_held) from credit_card_data where offer_accepted = 'Yes' group by credit_cards_held;
-+-------------------+--------------------------+
-| credit_cards_held | count(credit_cards_held) |
-+-------------------+--------------------------+
-|                 1 |                      362 |
-|                 2 |                      434 |
-|                 3 |                      198 |
-|                 4 |                       29 |
-+-------------------+--------------------------+
-4 rows in set (0.01 sec)
+		mysql> select credit_cards_held, count(credit_cards_held) from credit_card_data where offer_accepted = 'Yes' group by credit_cards_held;
+		+-------------------+--------------------------+
+		| credit_cards_held | count(credit_cards_held) |
+		+-------------------+--------------------------+
+		|                 1 |                      362 |
+		|                 2 |                      434 |
+		|                 3 |                      198 |
+		|                 4 |                       29 |
+		+-------------------+--------------------------+
+		4 rows in set (0.01 sec)
 
-	És interessant que la majoria tenen 2 credit cards NOMÉS tenint UN compte bancari obert. Mirar de relacionar amb el nombre personas en familia
+	És interessant que la majoria tenen 2 credit cards més UN compte bancari obert (debit card). 
+	
+	
+	Mirar de relacionar amb el nombre personas en familia:
+	
+		mysql> select credit_cards_held, count(credit_cards_held), avg(bank_accounts_open), avg(household_size) from credit_card_data where offer_accepted = 'Yes' group by credit_cards_held order by count(credit_cards_held) desc;
+		+-------------------+--------------------------+-------------------------+---------------------+
+		| credit_cards_held | count(credit_cards_held) | avg(bank_accounts_open) | avg(household_size) |
+		+-------------------+--------------------------+-------------------------+---------------------+
+		|                 2 |                      433 |                  1.2564 |              3.4896 |
+		|                 1 |                      361 |                  1.2687 |              3.3906 |
+		|                 3 |                      198 |                  1.2222 |              3.4040 |
+		|                 4 |                       29 |                  1.2069 |              3.5862 |
+		+-------------------+--------------------------+-------------------------+---------------------+
+		4 rows in set (0.06 sec)
+		
+		mysql> select credit_cards_held, count(credit_cards_held), avg(bank_accounts_open), avg(household_size) from credit_card_data where offer_accepted = 'No' group by credit_cards_held order by count(credit_cards_held) desc;
+		+-------------------+--------------------------+-------------------------+---------------------+
+		| credit_cards_held | count(credit_cards_held) | avg(bank_accounts_open) | avg(household_size) |
+		+-------------------+--------------------------+-------------------------+---------------------+
+		|                 2 |                     7500 |                  1.2533 |              3.5036 |
+		|                 1 |                     5786 |                  1.2584 |              3.5086 |
+		|                 3 |                     3183 |                  1.2535 |              3.4866 |
+		|                 4 |                      486 |                  1.2819 |              3.5206 |
+		+-------------------+--------------------------+-------------------------+---------------------+
+		4 rows in set (0.05 sec)
+		
+	Tant si accepten com si no la credit card, els dos grups tenen un patró similar de 2 credit cards, 1 debit card
+	i familia de 3 persones.
 
 
 -------------------------------------------------------------------------------------------------------------------------
