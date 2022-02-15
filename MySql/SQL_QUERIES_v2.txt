@@ -1,4 +1,12 @@
 
+Use the alter table command to drop the column q4_balance from the database, as we would not use it in the analysis with SQL. Select all the data from the table to verify if the command worked. Limit your returned results to 10.
+
+mysql> alter table credit_card_data drop column Q4_balance;
+Query OK, 0 rows affected (0.35 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+----------------------------------------------------------------------------------------------------------------
+
 Use sql query to find how many rows of data you have.
 
 		mysql> select count(*) as data_count from credit_card_data;
