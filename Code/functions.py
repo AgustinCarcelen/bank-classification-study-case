@@ -170,20 +170,6 @@ def logistic_regresion_train (X,y,control):
     plt.show()
     return accuracy
 
-def logistic_regresion_train_test (X,y):
-    from sklearn.model_selection import train_test_split 
-    from sklearn.linear_model import LogisticRegression
-    from sklearn.metrics import accuracy_score 
-    #split our data
-    X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.30,random_state=40)
-    #apply and train logistic regresion
-    model=LogisticRegression(max_iter=500)
-    model.fit(X_train,y_train)
-    #calculate accuracy
-    y_test_pred=model.predict(X_test)
-    accuracy = accuracy_score(y_test, y_test_pred)
-    print("Accuracy of LogisticRegresion:",accuracy)
-
 def logistic_regresion_full (X,y,control):
     #we create a list with the names of the scaled values
     names = ['MinMaxScaler','MaxAbsScaler','StandardScaler','RobustScaler','Normalizer','QuantileTransformer','PowerTransformer']
