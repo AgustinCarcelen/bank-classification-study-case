@@ -61,6 +61,11 @@ def pow_scaler (X):
     df = pd.DataFrame(df, index=X.index, columns=X.columns)
     return df
 
+def all_scalers (X):
+
+    return [maxmin_scaler (X),abs_scaler (X),st_scaler (X),rob_scaler (X),nor_sclaer (X),trans_sclaer (X),pow_scaler (X)]
+    
+    
 ######################################################################################################################
 ######################################################################################################################
 ######################################################################################################################
@@ -76,25 +81,25 @@ def pow_scaler (X):
 #receives a database
 #returns the same database with the values sampled according to the selected method
 
-def smote_sample(X,y):
+def smote_sample (X,y):
     from imblearn.over_sampling import SMOTE 
     sampler = SMOTE()
     X_smote,y_smote = sampler.fit_resample(X,y)
     return X_smote,y_smote
 
-def tomek_sample(X,y):
+def tomek_sample (X,y):
     from imblearn.under_sampling import TomekLinks 
     sampler= TomekLinks()
     X_tomek,y_tomek = sampler.fit_resample(X,y)
     return X_tomek,y_tomek
 
-def randomunder_sample(X,y):
+def randomunder_sample (X,y):
     from imblearn.under_sampling import RandomUnderSampler 
     sampler= RandomUnderSampler()
     X_rus,y_rus=sampler.fit_resample(X,y)
     return X_rus,y_rus
 
-def randomover_sample(X,y):
+def randomover_sample (X,y):
     from imblearn.over_sampling import RandomOverSampler 
     sampler=RandomOverSampler()
     X_ros,y_ros=sampler.fit_resample(X,y)
@@ -119,7 +124,7 @@ def randomover_sample(X,y):
 #returns accuracy of model, confusion matrix plot, roc_curve plot
 
 
-def logistic_regresion_train(X,y,control):
+def logistic_regresion_train (X,y,control):
     from sklearn.model_selection import train_test_split 
     from sklearn.linear_model import LogisticRegression
     from sklearn.metrics import accuracy_score 
@@ -130,7 +135,8 @@ def logistic_regresion_train(X,y,control):
     model.fit(X_train,y_train)
     #calculate accuracy
     y_test_pred=model.predict(X_test)
-    print("Accuracy of LogisticRegresion:",accuracy_score(y_test, y_test_pred))
+    accuracy = accuracy_score(y_test, y_test_pred)
+    print("Accuracy of LogisticRegresion:",accuracy)
     
     from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
     import matplotlib.pyplot as plt 
@@ -161,8 +167,20 @@ def logistic_regresion_train(X,y,control):
     ax[2].plot(fpr,tpr,label='roc model,auc='+str(auc))
     ax[2].legend(loc=4)
     plt.show()
-   
-    return
+    return accuracy
+
+def logistic_regresion_full (X,y,control):
+    z = 0
+    names = ['MinMaxScaler','MaxAbsScaler','StandardScaler','RobustScaler','Normalizer','QuantileTransformer','PowerTransformer']
+    result = pd.DataFrame(columns = ['Scaler','Accuracy'])
+    for i in X:  
+        print("Numerical values sampled with: " + names[z])
+        print(i)
+        accuracy = logistic_regresion_train (i,y,1)
+        result = result.append({'Scaler' : names[z] , 'Accuracy' : accuracy}, ignore_index=True)
+        print("")
+        z=z+1
+    return result
 
 ######################################################################################################################
 ######################################################################################################################
