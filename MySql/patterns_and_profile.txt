@@ -1,13 +1,13 @@
 
 		ACCEPT CREDIT CARD:
 		
-			- Reward: 					AIR MILES
+			- Reward: 				AIR MILES
 			- Mailer type: 				POSTCARD
 			- Income level: 			MEDIUM
-			- Bank accounts open: 		1
-			- Overdraft protection: 	NO
+			- Bank accounts open: 			1
+			- Overdraft protection: 		NO
 IMP			- Credit rating: 			LOW								
-			- Credit cards held: 		2
+			- Credit cards held: 			2
 			- Homes owned: 				1
 			- Household size:			3-4
 			- Own your home: 			YES
@@ -16,13 +16,13 @@ IMP			- Average balance:			BELOW THE TOTAL AVERAGE
 		
 		DON'T ACCEPT CREDIT CARD:
 		
-			- Reward: 					CASH BACK
+			- Reward: 				CASH BACK
 			- Mailer type: 				LETTER
-		    - Income level:				MEDIUM
-			- Bank accounts open: 		1
-			- Overdraft protection: 	NO
+		    	- Income level:				MEDIUM
+			- Bank accounts open: 			1
+			- Overdraft protection: 		NO
 IMP			- Credit rating: 			HIGH
-			- Credit cards held: 		2
+			- Credit cards held: 			2
 			- Homes owned: 				1
 			- Household size:			3-4
 			- Own your home: 			YES
