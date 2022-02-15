@@ -111,6 +111,16 @@ INCOME LEVEL (object):
 		| Low          |                 388 |
 		+--------------+---------------------+
 		3 rows in set (0.01 sec)
+		
+		mysql> select income_level, count(income_level) from credit_card_data where offer_accepted = 'Yes' and credit_rating = 'High' group by income_level;
+		+--------------+---------------------+
+		| income_level | count(income_level) |
+		+--------------+---------------------+
+		| Low          |                  46 |
+		| High         |                  18 |
+		| Medium       |                  55 |
+		+--------------+---------------------+
+		3 rows in set (0.01 sec)
 
 	Segueix la tendència que el total, inclús els 'high' són la classe MINORITÀRIA.
 
@@ -246,18 +256,18 @@ CREDIT RATING (object):
 		3 rows in set (0.06 sec)
 		
 	Ara bé, la mitjana de la balança dels clients 'low' és més alta que els 'high', tant si tenen overdraft com si no;
-	No obstant, els 'high' tenen la mitjana que els 'low' i 'medium' quan NO accepten la credit card NI tenen overdraft.
+	No obstant, els 'high' tenen MAJOR mitjana que els 'low' i 'medium' quan NO accepten la credit card NI tenen overdraft.
 
 -------------------------------------------------------------------------------------------------------------------------
 
 CREDIT CARDS HELD (int):
 
-		mysql> select credit_cards_held, count(credit_cards_held) from credit_card_data where offer_accepted = 'Yes' group by credit_cards_held;
+		mysql> select credit_cards_held, count(credit_cards_held) from credit_card_data where offer_accepted = 'Yes' group by credit_cards_held order by count(credit_cards_held) desc;
 		+-------------------+--------------------------+
 		| credit_cards_held | count(credit_cards_held) |
 		+-------------------+--------------------------+
-		|                 1 |                      362 |
-		|                 2 |                      434 |
+		|                 2 |                      433 |
+		|                 1 |                      361 |
 		|                 3 |                      198 |
 		|                 4 |                       29 |
 		+-------------------+--------------------------+
@@ -298,11 +308,11 @@ CREDIT CARDS HELD (int):
 
 HOMES OWNED (int):
 
-mysql> select homes_owned, count(homes_owned) from credit_card_data where offer_accepted = 'Yes' group by homes_owned;
+mysql> select homes_owned, count(homes_owned) from credit_card_data where offer_accepted = 'Yes' group by homes_owned order by count(homes_owned) desc;
 +-------------+--------------------+
 | homes_owned | count(homes_owned) |
 +-------------+--------------------+
-|           1 |                825 |
+|           1 |                823 |
 |           2 |                189 |
 |           3 |                  9 |
 +-------------+--------------------+
@@ -360,35 +370,48 @@ mysql> select household_size, count(household_size) from credit_card_data where 
 
 OWN YOUR HOME (object):
 
-mysql> select own_your_home, count(own_your_home) from credit_card_data where offer_accepted = 'Yes' group by own_your_home order by count(own_your_home) desc;
-+---------------+----------------------+
-| own_your_home | count(own_your_home) |
-+---------------+----------------------+
-| Yes           |                  663 |
-| No            |                  360 |
-+---------------+----------------------+
-2 rows in set (0.01 sec)
+		mysql> select own_your_home, count(own_your_home) from credit_card_data where offer_accepted = 'Yes' group by own_your_home order by count(own_your_home) desc;
+		+---------------+----------------------+
+		| own_your_home | count(own_your_home) |
+		+---------------+----------------------+
+		| Yes           |                  663 |
+		| No            |                  360 |
+		+---------------+----------------------+
+		2 rows in set (0.01 sec)
 
-mysql> select own_your_home, count(own_your_home) from credit_card_data where offer_accepted = 'Yes' and income_level = 'High' group by own_your_home order by count(own_your_home) desc;
-+---------------+----------------------+
-| own_your_home | count(own_your_home) |
-+---------------+----------------------+
-| Yes           |                  110 |
-| No            |                   55 |
-+---------------+----------------------+
-2 rows in set (0.01 sec)
+		mysql> select own_your_home, count(own_your_home) from credit_card_data where offer_accepted = 'Yes' and income_level = 'High' group by own_your_home order by count(own_your_home) desc;
+		+---------------+----------------------+
+		| own_your_home | count(own_your_home) |
+		+---------------+----------------------+
+		| Yes           |                  110 |
+		| No            |                   55 |
+		+---------------+----------------------+
+		2 rows in set (0.01 sec)
 
-mysql> select own_your_home, count(own_your_home) from credit_card_data where offer_accepted = 'Yes' and income_level = 'Low' group by own_your_home order by count(own_your_home) desc;
-+---------------+----------------------+
-| own_your_home | count(own_your_home) |
-+---------------+----------------------+
-| Yes           |                  254 |
-| No            |                  134 |
-+---------------+----------------------+
-2 rows in set (0.01 sec)
+		mysql> select own_your_home, count(own_your_home) from credit_card_data where offer_accepted = 'Yes' and income_level = 'Low' group by own_your_home order by count(own_your_home) desc;
+		+---------------+----------------------+
+		| own_your_home | count(own_your_home) |
+		+---------------+----------------------+
+		| Yes           |                  254 |
+		| No            |                  134 |
+		+---------------+----------------------+
+		2 rows in set (0.01 sec)
 
 	Molt pocs NO tenen casa pròpia entre els 'high' income, mentre que en els 'low' la proporció augmenta. Pel que fa al
 	general, gairebé el doble de clients tenen casa pròpia.
+	
+	Comparant-ho amb l'average de num_familiars:
+	
+		mysql> select own_your_home, count(own_your_home), avg(household_size) from credit_card_data group by own_your_home order by count(own_your_home) desc;
+		+---------------+----------------------+---------------------+
+		| own_your_home | count(own_your_home) | avg(household_size) |
+		+---------------+----------------------+---------------------+
+		| Yes           |                11636 |              3.4879 |
+		| No            |                 6340 |              3.5197 |
+		+---------------+----------------------+---------------------+
+		2 rows in set (0.02 sec)
+		
+	No es detecten diferències entre si són o no propietaris.
 
 -------------------------------------------------------------------------------------------------------------------------
 
@@ -475,3 +498,24 @@ mysql> select income_level, avg(Q4_balance) from credit_card_data where offer_ac
 	els q1, q2 i q3, les distàncies entre ells són menors.
 
 	En el profiling, té forma d'skwed positiu, ja que per la part esquerra es troba a 0.
+	
+	
+======================================================================================================================
+
+Mates, sobre els nulls a SQL, tenia raó Thiago de que a l'importar el csv a MySQL els nulls els converteix a 0. Llavors, seguim amb la mateixa idea d'eliminar-los, correcte?
+
+		mysql> select round(avg(average_balance), 2) as average from credit_card_data;
+		+---------+
+		| average |
+		+---------+
+		|  939.26 |
+		+---------+
+		1 row in set (0.01 sec)
+
+		mysql> select round(avg(average_balance), 2) as average from credit_card_data;
+		+---------+
+		| average |
+		+---------+
+		|  940.52 |
+		+---------+
+		1 row in set (0.05 sec)
