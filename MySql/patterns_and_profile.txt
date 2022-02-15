@@ -1,4 +1,7 @@
 
+						PROFILES:
+
+
 		ACCEPT CREDIT CARD:
 		
 			- Reward: 				AIR MILES
@@ -33,6 +36,8 @@ IMP			- Average balance:			ABOVE THE TOTAL AVERAGE
 	els que NO accepten tenen un perfil CONTRARI?
 
 ========================================================================================================================
+
+						PATTERNS:
 
 
 	REWARD:
