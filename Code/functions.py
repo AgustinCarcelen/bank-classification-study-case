@@ -198,7 +198,7 @@ def logistic_regresion_full (X,y,control):
 
 #Receive a column from pandas with Yes and No and return the same with 1 and 0
 def yes_no_to_0_1 (data):
-    if x in ['No', 'NO']:
+    if data in ['No', 'NO']:
         return 0
     else: 
         return 1
