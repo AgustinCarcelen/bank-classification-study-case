@@ -28,11 +28,9 @@
 			- Own your home: 				YES
         IMP 		- Average balance:				ABOVE the total average
 
-
-	NO TROBO LA LÒGICA. Perquè els que accepten són MENYS solvents i tenen un average per DAVALL de la mitjana, i
-	els que NO accepten tenen un perfil CONTRARI?
 	
 --------------------------------------------------------------------------------------------------------------------------	
+
 	Columns that have the same patterns in the two profiles and 'low' importance: 
 	
 		- number of open bank accounts (1)
