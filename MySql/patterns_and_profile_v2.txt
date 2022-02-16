@@ -1,0 +1,251 @@
+
+		ACCEPT CREDIT CARD:
+		
+			- Reward: 					AIR MILES					DIFFERENT from don't accept
+			- Mailer type: 				POSTCARD					DIFFERENT from don't accept
+			- Income level: 			MEDIUM
+			- Bank accounts open: 		1
+			- Overdraft protection: 	NO
+        IMP	- Credit rating: 			LOW							DIFFERENT from don't accept
+			- Credit cards held: 		2
+			- Homes owned: 				1
+			- Household size:			3-4
+			- Own your home: 			YES
+        IMP	- Average balance:			BELOW the total average		DIFFERENT from don't accept
+		
+		
+		DON'T ACCEPT CREDIT CARD:
+		
+			- Reward: 					CASH BACK
+			- Mailer type: 				LETTER			(almost tied with postcards)
+		    - Income level:				MEDIUM
+			- Bank accounts open: 		1
+			- Overdraft protection: 	NO
+        IMP	- Credit rating: 			HIGH
+			- Credit cards held: 		2
+			- Homes owned: 				1
+			- Household size:			3-4
+			- Own your home: 			YES
+        IMP - Average balance:			ABOVE the total average
+
+
+	NO TROBO LA LÒGICA. Perquè els que accepten són MENYS solvents i tenen un average per DAVALL de la mitjana, i
+	els que NO accepten tenen un perfil CONTRARI?
+	
+--------------------------------------------------------------------------------------------------------------------------	
+	Columns that have the same patterns in the two profiles and 'low' importance: 
+	
+		- number of open bank accounts (1)
+		- number of credit cards held (2)
+		- number of homes owned (1)
+		- household size (3-4)
+		- homeowner (yes)
+		- overdraft protection (no)
+
+	Columns that have different patterns in the two profiles and low importance:
+	
+	 	- reward (yes: 'air miles'; no: 'cash back')
+		- type of mail (yes: 'postcard'; no: 'letter' - although almost tied with postcards)
+
+	Important columns:
+	
+		- Income level: medium level is the mode. 
+		
+				· Yes: compared with the column 'credit rating', there is an INCONSISTENCY in the general perception 
+					   that the clients who have more income should have a higher credit rate. However, it's not like 
+					   this (HIGH level: minority class).
+
+				· No: they follow the general tendency (medium level: majority class).
+
+		- Credit rating: uniform pattern between levels (1/3 of clients for each).
+	
+				· Yes: it follows the INCONSISTENCY seen in the income level column (the clients with more income have a 
+				       LOW level - it is DIFFICULT to think that the bank would be interested in investing with those 
+					   clients).
+
+				· No: it happens the opposite (mode: high level, although almost tied between the three of them) - perhaps 
+					  the bank could be more interested in rewarding those with an ALTERNATIVE REWARD instead of a credit 
+					  card to get more benefits?
+
+		- Average balance: different pattern between yes and no:
+		
+				· Yes: compared with 'income level', there are almost no differences between them, but the HIGH level has 
+					   the LOWEST average and is BELOW the total average. Regarding 'credit rating', clients with LOW rates 
+					   are the ones with the highest average and ABOVE the total average, whereas the ones with HIGH rates 
+					   are BELOW the total avg.
+
+				· No: compared with 'income level', the ones with HIGH income have a higher average and are above the 
+				      total one, whereas compared with 'credit_rating' are the ones with HIGH level are above the other 
+					  ones.
+
+
+========================================================================================================================
+========================================================================================================================
+========================================================================================================================
+
+
+	REWARD:
+	
+		Tots tenen un reward. Hi ha una tendència UNIFORME de que els clients que accepten una credit card escolleixen
+		'AIR MILES' com a recompensa. Mentre que els que NO accepten, prefereixen 'CASH BACK'. Per tant,
+		es podria assumir que prioritzen més els diners (incidència DIRECTA en el client) que no pas en un altre tipus 
+		de premi (incidència INDIRECTA).
+		
+		Relacionant aquesta variable amb altres com 'credit_rating' o 'income_level', segueixen la mateixa
+		tendència dels que accepten i els que no.
+		
+	
+	MAILER_TYPE:
+	
+		La diferència entre una postal i una carta és que la informació que conté la postal es troba allà, 
+		mentre que en la carta, la informació es troba DINS d'un sobre. Per tant, en el món del marketing, la postal té 
+		una incidència més DIRECTA en el client que no pas la carta. Normalment, els clients quan reben cartes de 
+		propaganda, tendeixen a tirar-les sense obrir-les per veure el contingut.
+		
+		En general, pràcticament hi ha la meitat de postals i de cartes (un pel per sobre les postals).
+		
+		2/3 parts prefereixen POSTCARD que letter pel que fa als que SI accepten (segueix la mateixa tendència comparant-ho
+		amb 'credit_rating' i 'income_level'). 
+		
+		D'altra banda, en els que NO accepten hi ha una mica més demanda de LETTER, però està pràcticament al voltant 
+		de la meitat. Ara bé, hi ha els que tenen HIGH CREDIT RATING, els que trien POSTCARD superen per la mínima als de
+		LETTER pel que fa a la comparació amb 'credit_rating' i 'income_level'.
+	
+	
+	INCOME_LEVEL: 
+		
+		En general, hi ha 3 tipus (high - 50%, medium - 25% i low - 25%).
+		
+		Pel que fa als que SI accepten, segueix la tendència que el total, inclús els 'high' són la classe MINORITÀRIA.
+		Comparant-ho amb la variable 'credit_rating', se'n pot extreure que TRENCA la PERCEPCIÓ generalitzada de que 
+		els que tenen MÉS income, serien els que tindrien més SOLVÈNCIA (credit_rating); però no és així en el nostre cas.
+		
+		Pel que fa als que NO accepten, mantenen la tendència general, igual que si es compara amb el nivell de solvència
+		(credit_rating) en que el nivell MITJÀ (medium) supera considerablement els altres dos nivells.
+		
+	
+	BANK_ACCOUNTS_OPEN:
+	
+		En general, la gran majoria dels clients tendeixen a tenir només 1 compte bancari tant SI accepten com si NO.
+		Igualment, segueix el mateix patró si es comparen amb les variables 'credit_rating' i 'income_level'.
+		
+	
+	OVERDRAFT_PROTECTION:
+
+		En general, la gran majoria NO tenen protecció en cas de descobert.
+		
+		En els que SI accepten, s'observa que hi ha molt POCS clients 'high' que tenen overdraft protection, per tant, 
+		la majoria són 'medium' (70). Això voldria dir que, al tenir més capacitat adquisitiva, la tendència a quedar-se 
+		sense diners és molt menor que en els nivells 'Medium' i 'Low'. Ara bé, la proporció entre 'si' i 'no' és més 
+		petita a 'high' que a 'medium'.
+		
+		Mentre que en els que NO accepten, segueix el mateix patró però amb més clients en el nivell mitjà si es compara
+		amb les variables 'credit_rating' i 'income_level' (igual passa amb els que SI accepten).
+		
+	
+	CREDIT_RATING:
+	
+		En general, cada nivell agrupa una tercera part dels clients.
+		
+		Pel que fa als que SI accepten, 2/3 parts tenen un BAIX nivell de solvència trencant la percepció que ja s'ha
+		comentat en la variable 'income_level' i la POCA confiança que inspira aquests clients al banc. Per tant,
+		es fa DIFÍCIL de pensar que el banc estigui interessat en INVERTIR en aquests clients amb l'objectiu de treure'n
+		algun rendiment addicional.
+		
+		D'altra banda, els que NO accepten, passa el CONTRARI (ara bé, amb poca diferència amb els altres nivells),
+		i es que els clients que tenen un HIGH rate són els majoritaris. Per tant, el banc podria estar més interessat
+		en PREMIAR aquests clients d'una manera ALTERNATIVA a l'obtenció d'una tarjeta de crèdit.
+		
+		
+		Relació entre 'credit_rating' i 'overdraft_protection' i 'average_balance':
+		
+		Ara bé, la mitjana de la balança dels clients 'low' és més alta que els 'high', tant si tenen overdraft com si no;
+		No obstant, els 'high' tenen MAJOR mitjana que els 'low' i 'medium' quan NO accepten la credit card NI tenen 
+		overdraft.
+		
+	
+	CREDIT CARDS HELD:
+	
+		Tant si accepten com si no la credit card, els dos grups tenen un patró similar de 2 credit cards, 1 debit card
+		i familia de 3 persones.
+		
+	
+	HOMES OWNED:
+	
+		La gran majoria dels clients només poseeixen una casa, per tant, segueix una tendència 'natural'. Tampoc
+		destaca que els que tinguin un HIGH INCOME_LEVEL tinguin major proporció de cases en propietat.
+	
+	
+	HOUSEHOLD SIZE:
+	
+		En general, manté una distribució NORMAL (la major part de les families són entre 3 i 4 individus).
+		
+		Es interessant remarcar que en els que SI accepten, hi ha una distribució més UNIFORME en les famílies amb
+		un HIGH INCOME_LEVEL, mentre que en els altres nivells d'income la majoria segueix la tendència general (3 i 4).
+		Per tant, aquelles famílies tindrien més poder adquisitiu per poder mantenir un major nombre d'individus.
+	
+	
+	OWN YOUR HOME:
+	 
+		Pel que fa al general, gairebé el doble de clients tenen casa pròpia (tant SI accepten com si NO).
+		Molt pocs NO tenen casa pròpia entre els 'high' income, mentre que en els 'low' la proporció augmenta.
+		
+		Comparant-ho amb la variables HOUSEHOLD_SIZE, NO es detecten diferències entre si són o no propietaris
+		(la majoria entre 3 i 4 individus). 
+		
+		
+	AVERAGE BALANCE:
+		
+		Comparant-ho amb INCOME_LEVEL i els que SI accepten, destaca que NO hi ha gairebé diferència entre les mitjanes 
+		segons el nivell d'income. És més, destaca que 'high' sigui el que MENOR average té (i per DAVALL de la mitjana).
+		
+		Mentre en els que NO accepten, segueix la tendència contrària als que si, ja que els 'high' income superen
+		als altres dos nivells i es troba PER SOBRE de la mitjana total.
+		
+		Comparant-ho amb el CREDIT_RATING i els que SI accepten, els que tenen LOW rate tenen un average per sobre 
+		dels altres dos i de la mitjana, mentre que els HIGH estan BASTANT per davall de la mitjana.
+		
+		I els que NO accepten, passa el contrari, en que els HIGH tenen un average MAJOR que els altres dos; ara bé,
+		amb poca diferència entre els altres dos i només una mica per sobre de la mitjana.
+		
+		
+
+
+			mysql> select credit_rating, count(average_balance), round(avg(average_balance), 2) as average from credit_card_data where average_balance < 499 group by credit_rating order by avg(average_balance) desc;
+			+---------------+------------------------+---------+
+			| credit_rating | count(average_balance) | average |
+			+---------------+------------------------+---------+
+			| Low           |                    847 |   250.8 |
+			| Medium        |                    855 |  247.79 |
+			| High          |                    829 |  245.11 |
+			+---------------+------------------------+---------+
+			3 rows in set (0.06 sec)
+
+			mysql> select credit_rating, count(average_balance), round(avg(average_balance), 2) as average from credit_card_data where average_balance between 500 and 1599 group by credit_rating order by avg(average_balance) desc;
+			+---------------+------------------------+---------+
+			| credit_rating | count(average_balance) | average |
+			+---------------+------------------------+---------+
+			| Low           |                   4970 | 1036.79 |
+			| High          |                   5092 | 1035.15 |
+			| Medium        |                   4986 | 1034.28 |
+			+---------------+------------------------+---------+
+			3 rows in set (0.03 sec)
+
+			mysql> select credit_rating, count(average_balance), round(avg(average_balance), 2) as average from credit_card_data where average_balance > 1600 group by credit_rating order by avg(average_balance) desc;
+			+---------------+------------------------+---------+
+			| credit_rating | count(average_balance) | average |
+			+---------------+------------------------+---------+
+			| Medium        |                    123 | 1772.38 |
+			| High          |                    142 | 1767.69 |
+			| Low           |                    129 | 1741.84 |
+			+---------------+------------------------+---------+
+			3 rows in set (0.01 sec)
+					
+		
+		Dividint l'average balance pels clusters que apareixen en la visualització, no hi ha canvis
+		en la tendència:
+		
+			< 499: 				LOW té l'average més gran
+			>= 500 < 1599:		LOW té l'average més gran
+			> 1600:				MEDIUM té l'average més gran
+			
