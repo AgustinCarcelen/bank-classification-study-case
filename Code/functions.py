@@ -41,7 +41,7 @@ def rob_scaler (X):
     return df
 
 
-def nor_sclaer (X):
+def nor_scaler (X):
     from sklearn.preprocessing import Normalizer
     df = Normalizer().fit(X).transform(X)
     df = pd.DataFrame(df, index=X.index, columns=X.columns)
@@ -61,9 +61,10 @@ def pow_scaler (X):
     df = pd.DataFrame(df, index=X.index, columns=X.columns)
     return df
 
+#Return a database list with all the values scaled
 def all_scalers (X):
 
-    return [maxmin_scaler (X),abs_scaler (X),st_scaler (X),rob_scaler (X),nor_sclaer (X),trans_sclaer (X),pow_scaler (X)]
+    return [maxmin_scaler (X),abs_scaler (X),st_scaler (X),rob_scaler (X),nor_scaler (X),trans_sclaer (X),pow_scaler (X)]
     
     
 ######################################################################################################################
@@ -170,16 +171,19 @@ def logistic_regresion_train (X,y,control):
     return accuracy
 
 def logistic_regresion_full (X,y,control):
-    z = 0
+    #we create a list with the names of the scaled values
     names = ['MinMaxScaler','MaxAbsScaler','StandardScaler','RobustScaler','Normalizer','QuantileTransformer','PowerTransformer']
+    #we create a empty list to store accuracy of each scaled values
+    accuracy = []
+    ##we create a empty list to store the results
     result = pd.DataFrame(columns = ['Scaler','Accuracy'])
-    for i in X:  
-        print("Numerical values sampled with: " + names[z])
-        print(i)
-        accuracy = logistic_regresion_train (i,y,1)
-        result = result.append({'Scaler' : names[z] , 'Accuracy' : accuracy}, ignore_index=True)
+    #This for, call the function -logistic_regresion_train- to test each scaled value for the regression model
+    for i in range(len(X)):  
+        print("Numerical values sampled with: " + names[i])
+        print(X[i])
+        accuracy.append(logistic_regresion_train (X[i],y,control))
+        result = result.append({'Scaler' : names[i] , 'Accuracy' : accuracy[i]}, ignore_index=True)
         print("")
-        z=z+1
     return result
 
 ######################################################################################################################
@@ -193,14 +197,14 @@ def logistic_regresion_full (X,y,control):
 ######################################################################################################################
 
 #Receive a column from pandas with Yes and No and return the same with 1 and 0
-def yes_no_to_0_1(data):
+def yes_no_to_0_1 (data):
     if x in ['No', 'NO']:
         return 0
     else: 
         return 1
     
 #Recive a database and return all Value_counts()
-def show_values(data):
+def show_values (data):
     import matplotlib.pyplot as plt
     import seaborn as sns
     for column in data:    
@@ -211,6 +215,16 @@ def show_values(data):
         sns.histplot(data[column], ax=ax)
         print("")
         print("")
+        
+#Recive a database and return a correlation matrix plot
+def matrix_correlation (data):
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    corr_matrix=data.corr(method='pearson')
+    mask=np.zeros_like(corr_matrix)
+    mask[np.triu_indices_from(mask)]=True
+    fig,ax = plt.subplots(figsize=(10,8))
+    ax=sns.heatmap(corr_matrix, mask=mask, center=0, cmap=sns.diverging_palette(220, 20, as_cmap=True), annot=True)
 
 
 ######################################################################################################################
