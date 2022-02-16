@@ -2,37 +2,35 @@
 		ACCEPT CREDIT CARD:
 		
 			- Reward: 					AIR MILES					DIFFERENT from don't accept
-			- Mailer type: 				POSTCARD					DIFFERENT from don't accept
-			- Income level: 			MEDIUM
-			- Bank accounts open: 		1
-			- Overdraft protection: 	NO
-        IMP	- Credit rating: 			LOW							DIFFERENT from don't accept
-			- Credit cards held: 		2
-			- Homes owned: 				1
-			- Household size:			3-4
-			- Own your home: 			YES
-        IMP	- Average balance:			BELOW the total average		DIFFERENT from don't accept
+			- Mailer type: 					POSTCARD					DIFFERENT from don't accept
+			- Income level: 				MEDIUM
+			- Bank accounts open: 				1
+			- Overdraft protection: 			NO
+        IMP		- Credit rating: 				LOW						DIFFERENT from don't accept
+			- Credit cards held: 				2
+			- Homes owned: 					1
+			- Household size:				3-4
+			- Own your home: 				YES
+        IMP		- Average balance:				BELOW the total average				DIFFERENT from don't accept
 		
 		
 		DON'T ACCEPT CREDIT CARD:
 		
 			- Reward: 					CASH BACK
-			- Mailer type: 				LETTER			(almost tied with postcards)
-		    - Income level:				MEDIUM
-			- Bank accounts open: 		1
-			- Overdraft protection: 	NO
-        IMP	- Credit rating: 			HIGH
-			- Credit cards held: 		2
-			- Homes owned: 				1
-			- Household size:			3-4
-			- Own your home: 			YES
-        IMP - Average balance:			ABOVE the total average
+			- Mailer type: 					LETTER			(almost tied with postcards)
+		    	- Income level:					MEDIUM
+			- Bank accounts open: 				1
+			- Overdraft protection: 			NO
+        IMP		- Credit rating: 				HIGH
+			- Credit cards held: 				2
+			- Homes owned: 					1
+			- Household size:				3-4
+			- Own your home: 				YES
+        IMP 		- Average balance:				ABOVE the total average
 
-
-	NO TROBO LA LÒGICA. Perquè els que accepten són MENYS solvents i tenen un average per DAVALL de la mitjana, i
-	els que NO accepten tenen un perfil CONTRARI?
 	
 --------------------------------------------------------------------------------------------------------------------------	
+
 	Columns that have the same patterns in the two profiles and 'low' importance: 
 	
 		- number of open bank accounts (1)
