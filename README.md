@@ -1,10 +1,8 @@
 # JAL data solutions
 # Bank classification study case :credit_card: :moneybag: :currency_exchange:
----
 
 Authors: [Josep Trota](https://www.linkedin.com/in/josep-trota-ochoa-de-eribe-ba01b055/), [Agustín Carcelén](https://www.linkedin.com/in/agustin-carcelen-chicote-b70048231/), [Lluis Badia](https://www.linkedin.com/in/lluis90badia/) 
 
----
 
 ## Contents
 
