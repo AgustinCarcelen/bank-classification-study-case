@@ -23,13 +23,23 @@ We have used 3 different models to evaluate our case study: Regression Logistic,
   
 ## Final insights
 
-### 
+### Conclusions
   
 - The target variable is highly imbalanced; therefore, it affected our results.
 
 - After applying the three predictive models, we concluded to make feature engineering to create a new (and shorter) Data Frame based on the profiles extracted from some important variables and the ones which are more related to the target variable.
 
 - The best model prediction is the Logistic Regression combined with the SMOTE sample implemented on our profile Data Frame because it returns more 'yes' values than the rest of the models in both datasets.
+
+### Recommendations
+  
+- The bank could be more interested in rewarding the clients who do not accept the offer with an alternative reward instead of a credit card to achieve more benefits.
+
+### Proposals
+
+- Include a Date-Time variable.
+- Replace the mailing system with email.
+
 
 
   
