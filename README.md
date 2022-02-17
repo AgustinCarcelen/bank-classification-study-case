@@ -1,18 +1,19 @@
-# JAL-repo
+# JAL data solutions - bank classification study case :credit_card: :moneybag:
+Authors: [Josep Trota](https://www.linkedin.com/in/josep-trota-ochoa-de-eribe-ba01b055/), [Agustín Carcelén](https://www.linkedin.com/in/agustin-carcelen-chicote-b70048231/), [Lluis Badia](https://www.linkedin.com/in/lluis90badia/) 
 
-## Briefing
+## Briefing :mag_right:
 The bank needs us as risk analysts to read into a specifically designed 18000 clients database to:
 * PRIMARY OBJECTIVE: Understand demographics and other characteristics of both customers that accept the offer and not.
 * SECONDARY: More insights are also highly valued.
 
-What to do?
+What to do :question:
 * Understand the data and variables
 * Research, explore and compare important issues related to them
 * Feature engineer our way into a good enough model
 * Make helpful conclusions that can lead to decisions
 
 
-## Data Exploration
+## Data Exploration :microscope:
 
 Exploring the DataFrame, we had to deal with some null values that had been removed because of the small proportion compared to the total (practically no difference whether we include them or not). Besides, we encountered two outliers in the column 'household size' that had also been removed for the same reason. Further conclusions or details in the [notebook](https://github.com/JosepTrota/JAL-repo/blob/main/Code/Case%20Studio%20Bank%20Final.ipynb) ("Deal with Outliers", section 3.2.5, in [23]).
 
@@ -24,7 +25,7 @@ However, there is no correlation between the variables except for the balance qu
 <p align="center"><img src="https://user-images.githubusercontent.com/96822258/154541671-856745dd-941b-4c9d-9702-1797873e5155.png"  height="400">
 
 
-## Feature engineering (profiling, dropping…)
+## Feature engineering (profiling, dropping…) 
 In the histogram for average balance three distinct “normal bells” can be seen, so we decided to split them onto groups as seen in the area chart. That had a part into the profiling, which combined values of the new groups, credit rating and income level in order to identify people who had high to low values on each of them.
 *	There is a large chunk of the data (almost 1/5) that has a different value in each one of the profiling variables (one high, one medium, one low). Thus the creation of the non profilable class.
 
@@ -35,7 +36,7 @@ In the histogram for average balance three distinct “normal bells” can be se
 
 
 
-## Models and their insights
+## Models and their insights :chart:
 
 We have used 3 different models to evaluate our case study: Regression Logistic, Knn, Random Forest<BR>
   
@@ -49,9 +50,9 @@ We have used 3 different models to evaluate our case study: Regression Logistic,
   
   ---
   
-## Final insights
+## Final insights 
 
-### Conclusions
+### Conclusions :memo:
   
 * The target variable is highly imbalanced; therefore, it affected our results.
 
@@ -59,7 +60,7 @@ We have used 3 different models to evaluate our case study: Regression Logistic,
 
 * The best model prediction is the random forest combined with the SMOTE oversampler implemented on our profile Data Frame because it returns more 'yes' values than the rest of the models in both datasets.
 
-### Recommendations
+### Recommendations :heavy_check_mark:
   
 * The bank could be more interested in rewarding the clients who do not accept the offer with an alternative reward instead of a credit card to achieve more benefits.
 * Further discussion on our proposed profiles is encouraged.
@@ -67,7 +68,7 @@ We have used 3 different models to evaluate our case study: Regression Logistic,
     * Are there any other variables that seem important?
     * Do we already have this data? If not, is there an easy way to get it? 
   
-### Proposals
+### Proposals :briefcase:
 
 * Include a Date-Time variable.
 * Replace the mailing system with email.
