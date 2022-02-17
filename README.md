@@ -8,7 +8,7 @@ Exploring the DataFrame, we had to deal with some null values that had been remo
 
 Based on what we have seen in the columns from a general perspective, on the one side, some patterns follow a uniform tendency when we talk about the majority ('income level', 'nº bank accounts open', among others). On the other side, other variables such as 'reward' or 'average_balance' follow a different pattern depending on whether the client accepts or not the offer. More information is in the column analysis report (in this SQL report [file](https://github.com/JosepTrota/JAL-repo/blob/main/MySql/Profiles%20and%20patterns.pdf)).
 
-However, there is no correlation between the variables except for the balance quarters and average ones.
+However, there is no correlation between the variables except for the balance quarters and average balance.
 
 
 ## Models and their insights
