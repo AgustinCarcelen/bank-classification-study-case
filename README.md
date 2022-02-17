@@ -24,11 +24,17 @@ In the histogram for average balance three distinct “normal bells” can be se
 -	In further models we dropped every variable except profile, average balance, household size, offer accepted, mailer type, credit cards held, bank account open, due to insights gained by applying the random forest model as seen in the [code](https://github.com/JosepTrota/JAL-repo/blob/main/Code/Case%20Studio%20Bank%20Final.ipynb) ("Looking for the best feature importance scores", section 4.4.2, in [62]).
 
 
+
 ## Models and their insights
+
 We have used 3 different models to evaluate our case study: Regression Logistic, Knn, Random Forest<BR>
+  
 - **Original Data:** In the first place we have analyzed the original database, applying the three aforementioned models to it. We have used different scalers and samples to try to improve our predictions, we have also used improvement techniques such as looking for the best value of K for the Knn model or looking for the best features for the Random Forest model.<BR>
+  
   - Our best result has been applying the Logistic Regression model, and afterwards applying SMOTE oversampler.
+  
 - **Profiled Data:** After doing feature engineering, we have created a new database that we have used to do a second analysis. Here we have applied all available scaling methods, sampling methods and enhancement techniques to our model to find the best prediction.
+  
   - In this case, our best result has been applying the random forest model with SMOTE oversampling.
   
 ## Final insights
