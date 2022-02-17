@@ -10,9 +10,9 @@ Based on what we have seen in the columns from a general perspective, on the one
 
 However, there is no correlation between the variables except for the balance quarters and average balance.
 
-We could also begin showing some graphic insights on the target we have in our hands
-
 <img src="https://user-images.githubusercontent.com/96822258/154541671-856745dd-941b-4c9d-9702-1797873e5155.png"  height="500">
+
+> We could also begin showing some graphic insights on the target we have in our hands
 
 
 ## Feature engineering (profiling, dropping…)
@@ -21,6 +21,8 @@ In the histogram for average balance three distinct “normal bells” can be se
 -	Variables dropped (random forest insights)
 
 <img src="https://github.com/JosepTrota/JAL-repo/blob/main/Images/Profiling.png?raw=true"  height="400">
+
+> We can already see some interesting trends. The higher the profile, the least likely they are to take the offer or get overdraft protection
 
 
 ## Models and their insights
