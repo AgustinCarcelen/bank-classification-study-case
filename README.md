@@ -47,6 +47,8 @@ We have used 3 different models to evaluate our case study: Regression Logistic,
   
   * In this case, our best result has been applying the random forest model with SMOTE oversampling.
   
+  ---
+  
 ## Final insights
 
 ### Conclusions
