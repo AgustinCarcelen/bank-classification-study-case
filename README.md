@@ -10,7 +10,7 @@ Based on what we have seen in the columns from a general perspective, on the one
 
 However, there is no correlation between the variables except for the balance quarters and average balance.
 
-<img src="https://user-images.githubusercontent.com/96822258/154541671-856745dd-941b-4c9d-9702-1797873e5155.png"  height="250">
+<img src="https://user-images.githubusercontent.com/96822258/154541671-856745dd-941b-4c9d-9702-1797873e5155.png"  height="400">
 
 > We could also begin showing some graphic insights on the target we have in our hands
 
