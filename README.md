@@ -4,9 +4,9 @@ Authors: [Josep Trota](https://www.linkedin.com/in/josep-trota-ochoa-de-eribe-ba
 
 ## Table of content
 
-- [Briefing](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#briefing)
-- [Data Exploration](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#data-exploration)
-- [Feature engineering](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#feature-engineering)
+- [Briefing](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#briefing-mag_right)
+- [Data Exploration](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#data-exploration-microscope)
+- [Feature engineering](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#feature-engineering-recycle)
 - [Models and their insights](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#models-and-their-insights-chart)
 - [Final insights](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#final-insights)
 
