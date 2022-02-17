@@ -21,7 +21,7 @@ In the histogram for average balance three distinct “normal bells” can be se
 <p align="center"><img src="https://github.com/JosepTrota/JAL-repo/blob/main/Images/Profiling.png?raw=true"  height="400">
 <p align="center"> We can already see some interesting trends. The higher the profile, the least likely they are to take the offer or get overdraft protection</p>
 
--	In further models we dropped every variable except profile, average balance, household size, offer accepted, mailer type, credit cards held, bank account open, due to insights gained by applying the random forest model as seen in the [code](https://github.com/JosepTrota/JAL-repo/blob/main/Code/Case%20Studio%20Bank%20Final.ipynb) (section 4.4.2 "Looking for the best feature importance scores", in [62]).
+-	In further models we dropped every variable except profile, average balance, household size, offer accepted, mailer type, credit cards held, bank account open, due to insights gained by applying the random forest model as seen in the [code](https://github.com/JosepTrota/JAL-repo/blob/main/Code/Case%20Studio%20Bank%20Final.ipynb) ("Looking for the best feature importance scores", section 4.4.2, in [62]).
 
 
 ## Models and their insights
