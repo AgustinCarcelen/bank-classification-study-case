@@ -62,7 +62,11 @@ We have used 3 different models to evaluate our case study: Regression Logistic,
 ### Recommendations
   
 * The bank could be more interested in rewarding the clients who do not accept the offer with an alternative reward instead of a credit card to achieve more benefits.
-
+* Further discussion on our proposed profiles is encouraged.
+    * Which kind of client does the bank want to encourage the most?
+    * Are there any other variables that seem important?
+    * Do we already have this data? If not, is there an easy way to get it? 
+  
 ### Proposals
 
 * Include a Date-Time variable.
