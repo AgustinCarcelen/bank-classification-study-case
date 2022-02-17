@@ -9,6 +9,7 @@ Authors: [Josep Trota](https://www.linkedin.com/in/josep-trota-ochoa-de-eribe-ba
 - [Data Exploration](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#data-exploration-microscope)
 - [Feature engineering](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#feature-engineering-recycle)
 - [Models and their insights](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#models-and-their-insights-chart)
+- [Visualizations](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#visualizations)
 - [Final insights](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#final-insights)
 
 ## Briefing :mag_right:
@@ -61,7 +62,7 @@ We have used 3 different models to evaluate our case study: Regression Logistic,
   
   ---
 ## Visualizations
-[Tableau](https://public.tableau.com/app/profile/josep.trota.ochoa.de.eribe/viz/JAL_16448750609760/Definitivedashboard?publish=yes)
+[Tableau](https://public.tableau.com/app/profile/josep.trota.ochoa.de.eribe/viz/JAL_16448750609760/Task9insightdashboard?publish=yes)
 [Presentation]()
   
   ---
