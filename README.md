@@ -18,8 +18,8 @@ However, there is no correlation between the variables except for the balance qu
 In the histogram for average balance three distinct “normal bells” can be seen, so we decided to split them onto groups as seen in the area chart. That had a part into the profiling, which combined values of the new groups, credit rating and income level in order to identify people who had high to low values on each of them.
 -	There is a large chunk of the data (almost 1/5) that has a different value in each one of the profiling variables (one high, one medium, one low). Thus the creation of the non profilable class.
 
-<p align="center"> We can already see some interesting trends. The higher the profile, the least likely they are to take the offer or get overdraft protection</p>
 <p align="center"><img src="https://github.com/JosepTrota/JAL-repo/blob/main/Images/Profiling.png?raw=true"  height="400">
+<p align="center"> We can already see some interesting trends. The higher the profile, the least likely they are to take the offer or get overdraft protection</p>
 
 -	In further models we dropped every variable except profile, average balance, household size, offer accepted, mailer type, credit cards held, bank account open, due to insights gained by applying the random forest model as seen in the [code](https://github.com/JosepTrota/JAL-repo/blob/main/Code/Case%20Studio%20Bank%20Final.ipynb) ("Looking for the best feature importance scores", section 4.4.2, in [62]).
 
