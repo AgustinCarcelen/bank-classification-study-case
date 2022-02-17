@@ -41,9 +41,9 @@ load data local infile 'bank_details.csv' into table credit_card_data fields ter
 
 /*
 
-This is the way we loaded the CSV file through the MySQL terminal ('bank.sql' contains questions 1, 2 and 3): 
+This is the way we loaded the CSV file through the MySQL terminal ('bank_create_database.sql' contains questions 1, 2 and 3): 
 
-mysql> source C:/Users/lluis/OneDrive/Escritorio/bank.sql;      
+mysql> source C:/Users/lluis/OneDrive/Escritorio/bank_create_database.sql;      
 Query OK, 2 rows affected (0.05 sec)
 
 Query OK, 1 row affected (0.01 sec)
