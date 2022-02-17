@@ -62,7 +62,7 @@ We have used 3 different models to evaluate our case study: Regression Logistic,
   
   ---
 ## Visualizations
-  If you wish to further investigate all our visualization efforts you can look up our [Tableau](https://public.tableau.com/app/profile/josep.trota.ochoa.de.eribe/viz/JAL_16448750609760/Task9insightdashboard?publish=yes) and the [Presentation]()
+  If you wish to further investigate all our visualization efforts you can look up our [Tableau](https://public.tableau.com/app/profile/josep.trota.ochoa.de.eribe/viz/JAL_16448750609760/Task9insightdashboard?publish=yes) and the [Presentation]() ;)
   
   ---
   
