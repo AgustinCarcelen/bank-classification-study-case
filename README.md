@@ -1,17 +1,17 @@
 # JAL-repo
 
-## Repository for the mid bootcamp project (classification)
+### Repository for the mid bootcamp project (classification)
 
 ## Data Exploration
 
-Exploring the DataFrame, we had to deal with some null values that had been removed because of the small proportion compared to the total (practically no difference whether we include them or not). Besides, we encountered an outlier in the column 'household size' that had also been removed for the same reason. Further conclusions (or details) in 3.2.5 from the notebook (link to the notebook).
+Exploring the DataFrame, we had to deal with some null values that had been removed because of the small proportion compared to the total (practically no difference whether we include them or not). Besides, we encountered two outliers in the column 'household size' that had also been removed for the same reason. Further conclusions (or details) in 3.2.5 from the notebook (link to the [notebook](https://github.com/JosepTrota/JAL-repo/blob/main/Code/Case%20Studio%20Bank%20Final.ipynb)).
 
 Based on what we have seen in the columns from a general perspective, on the one side, some patterns follow a uniform tendency when we talk about the majority ('income level', 'nº bank accounts open', among others). On the other side, other variables such as 'reward' or 'average_balance' follow a different pattern depending on whether the client accepts or not the offer. More information is in the column analysis report (link to the file).
 
 However, there is no correlation between the variables except for the balance quarters and average ones.
 
 
-## Models and its insights
+## Models and their insights
 We have used 3 different models to evaluate our case study: Regression Logistic, Knn, Random Forest<BR>
 - **Original Data:** In the first place we have analyzed the original database, applying the three aforementioned models to it. We have used different scalers and samples to try to improve our predictions, we have also used improvement techniques such as looking for the best value of K for the Knn model or looking for the best features for the Random Forest model.<BR>
   - Our best result has been applying the Logistic Regression model, and afterwards applying SMOTE resampler.
