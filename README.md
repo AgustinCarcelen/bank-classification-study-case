@@ -4,11 +4,11 @@ Authors: [Josep Trota](https://www.linkedin.com/in/josep-trota-ochoa-de-eribe-ba
 
 ## Table of content
 
-- [Briefing](https://github.com/lillaszulyovszky/ironhack-case-study-classification/blob/main/README.md#briefing)
-- [Data Exploration](https://github.com/lillaszulyovszky/ironhack-case-study-classification/blob/main/README.md#data-exploration)
-- [Feature engineering](https://github.com/lillaszulyovszky/ironhack-case-study-classification#feature-engineering)
-- [Models and their insights](https://github.com/lillaszulyovszky/ironhack-case-study-classification#models-and-their-insights)
-- [Final insights](https://github.com/lillaszulyovszky/ironhack-case-study-classification#final-insights)
+- [Briefing](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#briefing)
+- [Data Exploration](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#data-exploration)
+- [Feature engineering](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#feature-engineering)
+- [Models and their insights](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#models-and-their-insights)
+- [Final insights](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#final-insights)
 
 ## Briefing :mag_right:
 
