@@ -1,7 +1,19 @@
 # JAL data solutions - bank classification study case :credit_card: :moneybag: :currency_exchange:
+
 Authors: [Josep Trota](https://www.linkedin.com/in/josep-trota-ochoa-de-eribe-ba01b055/), [Agustín Carcelén](https://www.linkedin.com/in/agustin-carcelen-chicote-b70048231/), [Lluis Badia](https://www.linkedin.com/in/lluis90badia/) 
 
+
+## Contents
+
+- [Briefing](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#briefing-mag_right)
+- [Data Exploration](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#data-exploration-microscope)
+- [Feature engineering](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#feature-engineering-recycle)
+- [Models and their insights](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#models-and-their-insights-chart)
+- [Visualizations](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#visualizations)
+- [Final insights](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#final-insights)
+
 ## Briefing :mag_right:
+
 The bank needs us as risk analysts to read into a specifically designed 18000 clients database to:
 * PRIMARY OBJECTIVE: Understand demographics and other characteristics of both customers that accept the offer and not.
 * SECONDARY: More insights are also highly valued.
@@ -25,7 +37,8 @@ However, there is no correlation between the variables except for the balance qu
 <p align="center"><img src="https://user-images.githubusercontent.com/96822258/154541671-856745dd-941b-4c9d-9702-1797873e5155.png"  height="400">
 
 
-## Feature engineering (profiling, dropping…) :recycle:
+## Feature engineering :recycle:
+  
 In the histogram for average balance three distinct “normal bells” can be seen, so we decided to split them onto groups as seen in the area chart. That had a part into the profiling, which combined values of the new groups, credit rating and income level in order to identify people who had high to low values on each of them.
 *	There is a large chunk of the data (almost 1/5) that has a different value in each one of the profiling variables (one high, one medium, one low). Thus the creation of the non profilable class.
 
@@ -35,18 +48,21 @@ In the histogram for average balance three distinct “normal bells” can be se
 *	In further models we dropped every variable except profile, average balance, household size, offer accepted, mailer type, credit cards held, bank account open, due to insights gained by applying the random forest model as seen in the [code](https://github.com/JosepTrota/JAL-repo/blob/main/Code/Case%20Studio%20Bank%20Final.ipynb) ("Looking for the best feature importance scores", section 4.4.2, in [62]).
 
 
-
 ## Models and their insights :chart:
 
 We have used 3 different models to evaluate our case study: Regression Logistic, Knn, Random Forest<BR>
   
-- **Original Data:** In the first place we have analyzed the original database, applying the three aforementioned models to it. We have used different scalers and samples to try to improve our predictions, we have also used improvement techniques such as looking for the best value of K for the Knn model or looking for the best features for the Random Forest model. You can see it in the [code](https://github.com/JosepTrota/JAL-repo/blob/main/Code/Case%20Studio%20Bank%20Final.ipynb) ("Looking for the best feature importance scores", section 4, in [29]).<BR>
+- **Original Data:** In the first place we have analyzed the original database, applying the three aforementioned models to it. We have used different scalers and samples to try to improve our predictions, we have also used improvement techniques such as looking for the best value of K for the Knn model or looking for the best features for the Random Forest model. You can see it in the [code](https://github.com/JosepTrota/JAL-repo/blob/main/Code/Case%20Studio%20Bank%20Final.ipynb) ("Looking for the best k", section 4, in [54]).<BR>
   
   * Our best result has been applying the Logistic Regression model, and afterwards applying SMOTE oversampler.
   
-- **Profiled Data:** After doing feature engineering, we have created a new database that we have used to do a second analysis. Here we have applied all available scaling methods, sampling methods and enhancement techniques to our model to find the best prediction. You can see it in the [code](https://github.com/JosepTrota/JAL-repo/blob/main/Code/Case%20Studio%20Bank%20Final.ipynb) ("Looking for the best feature importance scores", section 5, in [66]).
+- **Profiled Data:** After doing feature engineering, we have created a new database that we have used to do a second analysis. Here we have applied all available scaling methods, sampling methods and enhancement techniques to our model to find the best prediction. You can see it in the [code](https://github.com/JosepTrota/JAL-repo/blob/main/Code/Case%20Studio%20Bank%20Final.ipynb) ("Looking for the best feature importance scores", section 5, in [62]).
   
   * In this case, our best result has been applying the random forest model with SMOTE oversampling.
+  
+  ---
+## Visualizations
+  If you wish to further investigate all our visualization efforts you can look up our [Tableau](https://public.tableau.com/app/profile/josep.trota.ochoa.de.eribe/viz/JAL_16448750609760/Task9insightdashboard?publish=yes) and the [Presentation]() ;)
   
   ---
   
