@@ -9,9 +9,9 @@
 ## Models and its insights
 We have used 3 different models to evaluate our case study: Regression Logistic, Knn, Random Forest<BR>
 - **Original Data:** In the first place we have analyzed the original database, applying the three aforementioned models to it. We have used different scalers and samples to try to improve our predictions, we have also used improvement techniques such as looking for the best value of K for the Knn model or looking for the best features for the Random Forest model.<BR>
-  Our best result has been apply the Random Forest model, after selecting the best features.
+  - Our best result has been apply the Random Forest model, after selecting the best features.
 - **Profiled Data:** After doing feature engineering, we have created a new database that we have used to do a second analysis. Here we have applied all available scaling methods, sampling methods and enhancement techniques to our model to find the best prediction.
-In this case, our best result has been 
+  - In this case, our best result has been 
   
   
 
