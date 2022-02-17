@@ -1,4 +1,5 @@
-# JAL data solutions - bank classification study case :credit_card: :moneybag: :currency_exchange:
+# JAL data solutions
+# Bank classification study case :credit_card: :moneybag: :currency_exchange:
 Authors: [Josep Trota](https://www.linkedin.com/in/josep-trota-ochoa-de-eribe-ba01b055/), [Agustín Carcelén](https://www.linkedin.com/in/agustin-carcelen-chicote-b70048231/), [Lluis Badia](https://www.linkedin.com/in/lluis90badia/) 
 
 
@@ -46,18 +47,22 @@ In the histogram for average balance three distinct “normal bells” can be se
 *	In further models we dropped every variable except profile, average balance, household size, offer accepted, mailer type, credit cards held, bank account open, due to insights gained by applying the random forest model as seen in the [code](https://github.com/JosepTrota/JAL-repo/blob/main/Code/Case%20Studio%20Bank%20Final.ipynb) ("Looking for the best feature importance scores", section 4.4.2, in [62]).
 
 
-
 ## Models and their insights :chart:
 
 We have used 3 different models to evaluate our case study: Regression Logistic, Knn, Random Forest<BR>
   
-- **Original Data:** In the first place we have analyzed the original database, applying the three aforementioned models to it. We have used different scalers and samples to try to improve our predictions, we have also used improvement techniques such as looking for the best value of K for the Knn model or looking for the best features for the Random Forest model. You can see it in the [code](https://github.com/JosepTrota/JAL-repo/blob/main/Code/Case%20Studio%20Bank%20Final.ipynb) ("Looking for the best feature importance scores", section 4, in [29]).<BR>
+- **Original Data:** In the first place we have analyzed the original database, applying the three aforementioned models to it. We have used different scalers and samples to try to improve our predictions, we have also used improvement techniques such as looking for the best value of K for the Knn model or looking for the best features for the Random Forest model. You can see it in the [code](https://github.com/JosepTrota/JAL-repo/blob/main/Code/Case%20Studio%20Bank%20Final.ipynb) ("Looking for the best k", section 4, in [54]).<BR>
   
   * Our best result has been applying the Logistic Regression model, and afterwards applying SMOTE oversampler.
   
-- **Profiled Data:** After doing feature engineering, we have created a new database that we have used to do a second analysis. Here we have applied all available scaling methods, sampling methods and enhancement techniques to our model to find the best prediction. You can see it in the [code](https://github.com/JosepTrota/JAL-repo/blob/main/Code/Case%20Studio%20Bank%20Final.ipynb) ("Looking for the best feature importance scores", section 5, in [66]).
+- **Profiled Data:** After doing feature engineering, we have created a new database that we have used to do a second analysis. Here we have applied all available scaling methods, sampling methods and enhancement techniques to our model to find the best prediction. You can see it in the [code](https://github.com/JosepTrota/JAL-repo/blob/main/Code/Case%20Studio%20Bank%20Final.ipynb) ("Looking for the best feature importance scores", section 5, in [62]).
   
   * In this case, our best result has been applying the random forest model with SMOTE oversampling.
+  
+  ---
+## Visualizations
+[Tableau](https://public.tableau.com/app/profile/josep.trota.ochoa.de.eribe/viz/JAL_16448750609760/Definitivedashboard?publish=yes)
+[Presentation]()
   
   ---
   
