@@ -1,4 +1,4 @@
-# JAL data solutions - bank classification study case :credit_card: :moneybag:
+# JAL data solutions - bank classification study case :credit_card: :moneybag: :currency_exchange:
 Authors: [Josep Trota](https://www.linkedin.com/in/josep-trota-ochoa-de-eribe-ba01b055/), [Agustín Carcelén](https://www.linkedin.com/in/agustin-carcelen-chicote-b70048231/), [Lluis Badia](https://www.linkedin.com/in/lluis90badia/) 
 
 ## Briefing :mag_right:
@@ -25,7 +25,7 @@ However, there is no correlation between the variables except for the balance qu
 <p align="center"><img src="https://user-images.githubusercontent.com/96822258/154541671-856745dd-941b-4c9d-9702-1797873e5155.png"  height="400">
 
 
-## Feature engineering (profiling, dropping…) 
+## Feature engineering (profiling, dropping…) :recycle:
 In the histogram for average balance three distinct “normal bells” can be seen, so we decided to split them onto groups as seen in the area chart. That had a part into the profiling, which combined values of the new groups, credit rating and income level in order to identify people who had high to low values on each of them.
 *	There is a large chunk of the data (almost 1/5) that has a different value in each one of the profiling variables (one high, one medium, one low). Thus the creation of the non profilable class.
 
