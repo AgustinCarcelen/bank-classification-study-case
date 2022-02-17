@@ -2,7 +2,7 @@
 Authors: [Josep Trota](https://www.linkedin.com/in/josep-trota-ochoa-de-eribe-ba01b055/), [Agustín Carcelén](https://www.linkedin.com/in/agustin-carcelen-chicote-b70048231/), [Lluis Badia](https://www.linkedin.com/in/lluis90badia/) 
 
 
-## Table of content
+## Contents
 
 - [Briefing](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#briefing-mag_right)
 - [Data Exploration](https://github.com/JosepTrota/JAL-repo/blob/main/README.md#data-exploration-microscope)
