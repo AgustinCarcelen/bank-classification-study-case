@@ -1,5 +1,4 @@
 # JAL data solutions
----
 # Bank classification study case :credit_card: :moneybag: :currency_exchange:
 ---
 
