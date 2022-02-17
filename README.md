@@ -20,7 +20,7 @@ In the histogram for average balance three distinct “normal bells” can be se
 -	There is a large chunk of the data (almost 1/5) that has a different value in each one of the profiling variables (one high, one medium, one low). Thus the creation of the non profilable class.
 -	Variables dropped (random forest insights)
 
-<img src="https://github.com/JosepTrota/JAL-repo/blob/main/Images/Profiling.png?raw=true"  height="450">
+<img src="https://github.com/JosepTrota/JAL-repo/blob/main/Images/Profiling.png?raw=true"  height="400">
 
 
 ## Models and their insights
