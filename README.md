@@ -10,7 +10,7 @@ Based on what we have seen in the columns from a general perspective, on the one
 
 However, there is no correlation between the variables except for the balance quarters and average balance.
 
-<img src="https://user-images.githubusercontent.com/96822258/154541671-856745dd-941b-4c9d-9702-1797873e5155.png"  height="400">
+<p align="center"><img src="https://user-images.githubusercontent.com/96822258/154541671-856745dd-941b-4c9d-9702-1797873e5155.png"  height="400"></p>
 
 > We could also begin showing some graphic insights on the target we have in our hands
 
@@ -20,7 +20,7 @@ In the histogram for average balance three distinct “normal bells” can be se
 -	There is a large chunk of the data (almost 1/5) that has a different value in each one of the profiling variables (one high, one medium, one low). Thus the creation of the non profilable class.
 -	Variables dropped (random forest insights)
 
-<img src="https://github.com/JosepTrota/JAL-repo/blob/main/Images/Profiling.png?raw=true"  height="400">
+<p align="center"><img src="https://github.com/JosepTrota/JAL-repo/blob/main/Images/Profiling.png?raw=true"  height="400"></p>
 
 > We can already see some interesting trends. The higher the profile, the least likely they are to take the offer or get overdraft protection
 
