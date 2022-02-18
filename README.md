@@ -88,7 +88,6 @@ We have used 3 different models to evaluate our case study: Regression Logistic,
 
 * Include a Date-Time variable.
 * Replace the mailing system with email.
-* non profilable class - > average?
 
 
 
